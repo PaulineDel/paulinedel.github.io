@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pauline at Superhuman — The First 6 Months</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(160deg, #f0dfe8 0%, #e4d8ee 20%, #d8e0f4 40%, #ccdcf0 60%, #d8e8f4 80%, #e8eff8 100%);
+    background-attachment: fixed;
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 40px 20px;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #2a2a3d;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 .logo-card {
+    display: inline-block;
+    transform: rotate(-3deg);
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(12px);
+    padding: 5px 14px 5px 8px;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.7);
+    vertical-align: middle;
+    margin-left: 6px;
+    position: relative;
+    top: -6px;
+  }
+
+  .hero h1 .logo-card img {
+    height: 36px;
+    vertical-align: middle;
+    display: block;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* STICK FIGURE WITH FACE */
+  .character {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px auto 10px;
+    position: relative;
+  }
+
+  .character .cutout {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.15));
+    position: relative;
+    z-index: 2;
+  }
+
+  .greeting-bubble {
+    position: absolute;
+    top: 10px;
+    left: calc(50% + 50px);
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+    padding: 8px 14px;
+    border-radius: 12px 12px 12px 4px;
+    font-size: 0.85rem;
+    color: #2a2a3d;
+    white-space: nowrap;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+
+
+  /* SCROLL HINT */
+  .scroll-hint {
+    text-align: center;
+    padding: 10px;
+    color: #777;
+    font-size: 0.85rem;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* TIMELINE */
+  .timeline {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px 20px 80px;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #5a4fcf 0%, #5a4fcf33 100%);
+    transform: translateX(-50%);
+  }
+
+  .month {
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .month-dot {
+    position: absolute;
+    left: 50%;
+    top: 24px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border: 3px solid #5a4fcf;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    transition: all 0.3s;
+  }
+
+  .month.active .month-dot {
+    background: #5a4fcf;
+    box-shadow: 0 0 12px #5a4fcf44;
+  }
+
+  .month-content {
+    width: 42%;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(16px);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.6);
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  .month-content:hover {
+    border-color: #5a4fcf44;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .month:nth-child(odd) .month-content {
+    margin-left: 0;
+  }
+
+  .month:nth-child(even) .month-content {
+    margin-left: auto;
+  }
+
+  .month-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #5a4fcf;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+  }
+
+  .month-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2a2a3d;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .month-desc {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* EXPERIENCE CARD (hidden by default) */
+  .proof-card {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.3s ease, padding 0.3s ease;
+    background: rgba(90,79,207,0.08);
+    border-radius: 8px;
+    margin-top: 0;
+    padding: 0 14px;
+    border-left: 3px solid #5a4fcf;
+  }
+
+  .proof-card.open {
+    max-height: 300px;
+    margin-top: 10px;
+    padding: 12px 14px;
+  }
+
+  .proof-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #5a4fcf;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+  }
+
+  .proof-text {
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .proof-text strong {
+    color: #2a2a3d;
+  }
+
+  /* MINI AVATAR on timeline */
+  .mini-avatar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    z-index: 3;
+    top: -10px;
+    display: none;
+    text-align: center;
+  }
+
+  .month.active .mini-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .month.active .month-dot {
+    opacity: 0;
+  }
+
+  .mini-avatar .mini-cutout {
+    width: 40px;
+    height: auto;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.15));
+  }
+
+
+  /* CTA */
+  .cta {
+    text-align: center;
+    padding: 40px 20px 80px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .cta h2 {
+    font-size: 1.5rem;
+    color: #2a2a3d;
+    margin-bottom: 10px;
+  }
+
+  .cta p {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .cta a {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #5a4fcf;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+
+  .cta a:hover {
+    background: #4a3fbf;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px #5a4fcf44;
+  }
+
+  /* SOCIAL CARDS */
+  .social {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .social .month-dot {
+    border-color: #6bb89e;
+    background: #fff;
+  }
+
+  .social.active .month-dot {
+    background: #6bb89e;
+    box-shadow: 0 0 12px rgba(107,184,158,0.4);
+  }
+
+  .social .month-content {
+    background: linear-gradient(135deg,
+      rgba(200,235,218,0.6) 0%,
+      rgba(190,220,235,0.6) 30%,
+      rgba(210,235,220,0.6) 50%,
+      rgba(190,225,240,0.6) 70%,
+      rgba(200,235,225,0.6) 100%),
+      rgba(255,255,255,0.5);
+    backdrop-filter: blur(16px);
+    border-color: rgba(180,220,200,0.4);
+  }
+
+  .social .month-content:hover {
+    border-color: rgba(130,190,170,0.5);
+  }
+
+  .social .month-label {
+    color: #4a9a7e;
+  }
+
+  .social .proof-card {
+    background: rgba(107,184,158,0.1);
+    border-left-color: #6bb89e;
+  }
+
+  .social .proof-label {
+    color: #4a9a7e;
+  }
+
+  .social .month-title .emoji {
+    font-style: normal;
+  }
+
+  /* MAIN GLASS CARD */
+  .glass-wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 4px 40px 0;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border-radius: 32px;
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow:
+      0 8px 40px rgba(0,0,0,0.06),
+      0 2px 12px rgba(0,0,0,0.04),
+      inset 0 1px 0 rgba(255,255,255,0.4),
+      inset 0 -1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+  }
+
+  .glass-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-wrapper > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .timeline::before {
+      left: 20px;
+    }
+    .month-dot, .mini-avatar {
+      left: 20px;
+    }
+    .month-content {
+      width: calc(100% - 50px);
+      margin-left: 50px !important;
+    }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glass-wrapper">
+<div class="hero">
+  <div class="character">
+    <img class="cutout" src="pauline-cutout.png" alt="Pauline">
+    <div class="greeting-bubble">Hi, I'm Pauline, nice to e-meet you!</div>
+  </div>
+  <h1>My first 6 months at <span class="logo-card"><img src="superhuman-logo.png" alt="Superhuman"></span></h1>
+  <p>I believe the future of productivity is human-centered AI, and I'd love to help Superhuman get there.</p>
+</div>
+
+<div class="scroll-hint">click a milestone to learn more &#8595;</div>
+
+<div class="timeline">
+
+  <!-- MONTH 1 -->
+  <div class="month" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Month 1</div>
+      <div class="month-title">Mapping the agent ecosystem</div>
+      <div class="month-desc">Onboarding fast. Understanding the agent store, user flows, and where research is needed most. Meeting the Agents team, Data Science, Product, Design.</div>
+      <div class="proof-card">
+        <div class="proof-label">Why I'm a good fit</div>
+        <div class="proof-text"><strong>XING Events:</strong> Built research ops from zero in a product I'd never touched. Within months, teams were requesting research proactively.<br><br><strong>As a freelancer:</strong> I onboard fast. Every client is a new domain, new product, new team. I went from briefing to results in under a month on a B2C mobile app.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL: Week 2 -->
+  <div class="month social" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Just for fun</div>
+      <div class="month-title">First coffee chats</div>
+      <div class="month-desc">Getting to know the team over coffee. Learning what people are excited about, what frustrates them, what they wish research could help with. The best onboarding is listening.</div>
+      <div class="proof-card">
+        <div class="proof-label">Who I am outside work</div>
+        <div class="proof-text">I've lived and worked across France, Germany, Spain, and Asia. I speak 4 languages. The best part of joining a new team is the people. I'll probably suggest a cross-cultural lunch by week 3.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTH 2 -->
+  <div class="month" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Month 2</div>
+      <div class="month-title">First research sprint on agent adoption</div>
+      <div class="month-desc">Running rapid evaluative research: which agents get adopted, which get abandoned, and why. Qual interviews + quantitative usage data. Fast cycles, clear outputs.</div>
+      <div class="proof-card">
+        <div class="proof-label">Why I'm a good fit</div>
+        <div class="proof-text"><strong>ProductAnalyst.ai:</strong> Evaluated AI agent outputs for accuracy and usefulness. Monitored feature adoption and engagement metrics across PostHog for 4 B2B customers. Rapid iteration on what worked.<br><br><strong>Personio:</strong> Led end-to-end evaluative and exploratory research across 7 product teams. Qual + quant, fast turnaround.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTH 3 -->
+  <div class="month" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Month 3</div>
+      <div class="month-title">Partnering with Data Science</div>
+      <div class="month-desc">Defining experience metrics with the data team. Understanding experimentation results. Triangulating qual findings with behavioral data to build a complete picture.</div>
+      <div class="proof-card">
+        <div class="proof-label">Why I'm a good fit</div>
+        <div class="proof-text"><strong>Personio:</strong> Partnered with data science and product to define experience metrics, understand A/B test results, and prioritize the roadmap with data-backed recommendations.<br><br><strong>XING Events:</strong> Combined qualitative insights with survey data and experimentation results for a pricing study across 3 segments.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL: Running -->
+  <div class="month social" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Just for fun</div>
+      <div class="month-title">Joined the running group</div>
+      <div class="month-desc">If there's a running group, I'm in. If there isn't one, I'll start it. Best ideas come at km 3.</div>
+      <div class="proof-card">
+        <div class="proof-label">Fun fact</div>
+        <div class="proof-text">I run regularly wherever I am in the world. Ran in Bali, Montenegro, Munich, Paris. A running buddy is the fastest way to build trust with a colleague. Also: I think better when I move.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTH 4 -->
+  <div class="month" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Month 4</div>
+      <div class="month-title">Strategic narratives for leadership</div>
+      <div class="month-desc">Synthesizing across projects. Translating findings into strategic narratives that connect to the product vision. Presenting to senior stakeholders, not with slides, but with clarity.</div>
+      <div class="proof-card">
+        <div class="proof-label">Why I'm a good fit</div>
+        <div class="proof-text"><strong>XING Events:</strong> Created "Snackable insights" shared company-wide. Result: management wouldn't make major decisions without requesting research first.<br><br><strong>Deskbird:</strong> Synthesized mixed-methods findings into strategic narratives that shaped the entire next product quarter.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTH 5 -->
+  <div class="month" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Month 5</div>
+      <div class="month-title">Growing the research culture</div>
+      <div class="month-desc">Mentoring PMs, designers, and engineers to think in research terms. Building playbooks. Making research a team capability, not a bottleneck.</div>
+      <div class="proof-card">
+        <div class="proof-label">Why I'm a good fit</div>
+        <div class="proof-text"><strong>Personio:</strong> Mentored 20+ PMs, designers, and researchers to run experiments and qualitative research independently. Built workshops, coaching programmes, playbooks, and clip libraries.<br><br><strong>XING Events:</strong> Coached PO, designer, and copywriter to run continuous discovery sessions autonomously. 30+ sessions delivered by the team.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL: Team lunch -->
+  <div class="month social" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Just for fun</div>
+      <div class="month-title">Cross-cultural team lunch</div>
+      <div class="month-desc">Organized a "bring a dish from home" lunch. Nothing builds a team like food and stories about where you come from.</div>
+      <div class="proof-card">
+        <div class="proof-label">Why this matters to me</div>
+        <div class="proof-text">I grew up between cultures and spent my career in multicultural teams. I believe diverse teams build better products, and I actively invest in making people feel included. Also, I make a mean French quiche.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTH 6 -->
+  <div class="month" onclick="toggle(this)">
+    <div class="month-dot"></div>
+    <div class="mini-avatar"><img class="mini-cutout" src="pauline-cutout.png" alt="P"></div>
+    <div class="month-content">
+      <div class="month-label">Month 6</div>
+      <div class="month-title">Shaping the agent roadmap</div>
+      <div class="month-desc">Using research to lead vision discussions. Connecting insights across the agent ecosystem. Contributing to a roadmap grounded in how people actually work, not how we assume they do.</div>
+      <div class="proof-card">
+        <div class="proof-label">Why I'm a good fit</div>
+        <div class="proof-text"><strong>ProductAnalyst.ai:</strong> Designed the product vision and research strategy for an AI product from scratch. Approached AI from first principles: agents that fit how people work, not the other way around.<br><br><strong>Currently:</strong> Coaching a company on setting up AI agents. Building workflows that actually help, not just impress.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Shall we chat?</h2>
+  <p>I've spent 3 years building in AI and 6 doing user research. I'd love to explore the role with you!</p>
+  <a href="mailto:delepaut.pauline@gmail.com">Let's chat</a>
+</div>
+</div>
+
+<script>
+function toggle(el) {
+  const wasActive = el.classList.contains('active');
+  // close all
+  document.querySelectorAll('.month').forEach(m => {
+    m.classList.remove('active');
+    m.querySelector('.proof-card').classList.remove('open');
+  });
+  // open clicked if it wasn't already open
+  if (!wasActive) {
+    el.classList.add('active');
+    el.querySelector('.proof-card').classList.add('open');
+  }
+}
+</script>
+
+</body>
+</html>
