@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remotion Demo Videos · Pauline Delepaut</title>
+  <meta name="description" content="Product launch and demo videos built in code with Remotion (React)." />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .video-hero { padding: 3.5rem 0 4rem; }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .back-link:hover { color: var(--accent); }
+    .video-hero h1 { font-size: 2rem; margin: 0 0 0.5rem; }
+    .video-hero .lead { color: var(--muted); max-width: 42rem; margin: 0 0 2rem; }
+    .video-frame {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+      background: #111;
+      line-height: 0;
+    }
+    .video-frame video { width: 100%; height: auto; display: block; }
+    .video-note { color: var(--muted); font-size: 0.95rem; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">Pauline Delepaut</a>
+      <nav>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="video-hero">
+      <div class="container">
+        <a href="../index.html#work" class="back-link">← Back to work</a>
+        <h1>Remotion Demo Videos</h1>
+        <p class="lead">
+          Product launch and demo videos built entirely in code with Remotion (React).
+          Animated data stories rendered programmatically instead of hand-edited in a video tool.
+        </p>
+        <div class="video-frame">
+          <video controls preload="metadata" poster="../screenshots/remotion.png">
+            <source src="LaunchNoProblem.mp4" type="video/mp4" />
+            Your browser doesn't support embedded video.
+            <a href="LaunchNoProblem.mp4">Download the video</a>.
+          </video>
+        </div>
+        <p class="video-note">Built with Remotion · React · TypeScript.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; 2026 Pauline Delepaut</small>
+    </div>
+  </footer>
+</body>
+</html>

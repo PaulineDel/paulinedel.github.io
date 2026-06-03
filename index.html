@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pauline Delepaut — Portfolio</title>
-  <meta name="description" content="Portfolio of Pauline Delepaut — UX Research & AI." />
+  <title>Pauline Delepaut · Portfolio</title>
+  <meta name="description" content="Portfolio of Pauline Delepaut. UX Research & AI." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -20,47 +20,106 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container">
-        <h1>UX Researcher &amp; AI Practitioner</h1>
-        <p class="lead">
-          I help product teams turn user signals into decisions —
-          combining qualitative research with practical AI tooling.
-        </p>
-        <a class="cta" href="#work">See my work</a>
-      </div>
-    </section>
-
     <section id="about" class="section">
       <div class="container">
-        <h2>About</h2>
-        <p>
-          Sample bio paragraph. I'm a researcher and builder based in Europe,
-          working at the intersection of user research and applied AI.
-          Previously: Product Analyst, Research Lead, Founder.
-        </p>
+        <div class="about-row">
+          <div class="about-photo">
+            <span class="blob" aria-hidden="true"></span>
+            <img src="pauline.jpeg" alt="Pauline Delepaut" />
+          </div>
+          <div class="about-text">
+            <h1 class="about-name">Pauline Delepaut</h1>
+            <p class="about-tagline">UX Researcher &amp; AI Practitioner</p>
+            <p class="about-bio">
+              I'm a founder-operator with a UX research background, based in
+              Munich. I co-founded and ran two products from zero to one,
+              including an AI-native analytics agent, owning the whole arc from
+              customer discovery to product decisions and go-to-market, on top of
+              six years of UX research at B2B2C companies like XING and Personio.
+              These days I work AI-native: I prototype with LLMs every day and
+              ship most of the projects below with Claude Code.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="work" class="section section-alt">
       <div class="container">
         <h2>Selected Work</h2>
+        <p class="section-intro">Things I built with Claude Code. Tap a card to read more and open the live project.</p>
         <div class="grid">
-          <article class="card">
-            <h3>Sample Project One</h3>
-            <p class="meta">UX Research · 2025</p>
-            <p>Short description of a research project — what the problem was, how it was approached, and the outcome.</p>
+
+          <article class="card" data-expandable>
+            <button class="card-head" aria-expanded="false">
+              <img class="card-shot" src="screenshots/cancelquest.png" alt="The Cancel Quest" loading="lazy" />
+              <div class="card-bar">
+                <h3>The Cancel Quest</h3>
+                <span class="card-toggle" aria-hidden="true">+</span>
+              </div>
+            </button>
+            <div class="card-body"><div class="card-body-inner">
+              <p>A retro arcade game built from 100+ real subscription-cancellation flows. You race to cancel and escape while the game throws every dark-UX trick at you: the diabolical patterns companies actually use, turned into a level.</p>
+              <a class="card-link" href="https://v0-thecancelquest.vercel.app/" target="_blank" rel="noopener">Play the game →</a>
+            </div></div>
           </article>
-          <article class="card">
-            <h3>Sample Project Two</h3>
-            <p class="meta">AI Prototype · 2025</p>
-            <p>Short description of an AI prototype — what it does and what was learned from shipping it.</p>
+
+          <article class="card" data-expandable>
+            <button class="card-head" aria-expanded="false">
+              <img class="card-shot" src="screenshots/remotion.gif" alt="Remotion demo videos" loading="lazy" />
+              <div class="card-bar">
+                <h3>Remotion Demo Videos</h3>
+                <span class="card-toggle" aria-hidden="true">+</span>
+              </div>
+            </button>
+            <div class="card-body"><div class="card-body-inner">
+              <p>Product launch and demo videos built entirely in code with Remotion (React). Animated data stories like retention curves, onboarding monitors and growth charts, rendered programmatically instead of hand-edited in a video tool.</p>
+              <a class="card-link" href="remotion/index.html" target="_blank" rel="noopener">Watch the video →</a>
+            </div></div>
           </article>
-          <article class="card">
-            <h3>Sample Project Three</h3>
-            <p class="meta">Analytics · 2024</p>
-            <p>Short description of an analytics engagement — the question, the method, the impact.</p>
+
+          <article class="card" data-expandable>
+            <button class="card-head" aria-expanded="false">
+              <img class="card-shot" src="screenshots/artistway.png" alt="The Artist's Way app" loading="lazy" />
+              <div class="card-bar">
+                <h3>The Artist's Way</h3>
+                <span class="card-toggle" aria-hidden="true">+</span>
+              </div>
+            </button>
+            <div class="card-body"><div class="card-body-inner">
+              <p>A web app for tracking Julia Cameron's 12-week creativity program: morning pages, artist dates and weekly tasks, with each week as a macOS-style folder and a live progress bar. Built in Next.js.</p>
+              <a class="card-link" href="#" target="_blank" rel="noopener">Live demo coming soon →</a>
+            </div></div>
           </article>
+
+          <article class="card" data-expandable>
+            <button class="card-head" aria-expanded="false">
+              <img class="card-shot" src="screenshots/wrapup.png" alt="Wrapup skill" loading="lazy" />
+              <div class="card-bar">
+                <h3>Wrapup: Claude Code Skill</h3>
+                <span class="card-toggle" aria-hidden="true">+</span>
+              </div>
+            </button>
+            <div class="card-body"><div class="card-body-inner">
+              <p>A custom Claude Code skill that closes out a work session: it reviews what happened, updates the right department memory, syncs the weekly plan and business facts, so nothing gets lost between sessions.</p>
+              <a class="card-link" href="#" target="_blank" rel="noopener">See how it works →</a>
+            </div></div>
+          </article>
+
+          <article class="card" data-expandable>
+            <button class="card-head" aria-expanded="false">
+              <img class="card-shot" src="screenshots/tracker.png" alt="Application tracker" loading="lazy" />
+              <div class="card-bar">
+                <h3>Application Tracker</h3>
+                <span class="card-toggle" aria-hidden="true">+</span>
+              </div>
+            </button>
+            <div class="card-body"><div class="card-body-inner">
+              <p>A system for tracking job applications end to end: roles, status, tailored CVs and next steps in one place.</p>
+              <a class="card-link" href="#" target="_blank" rel="noopener">View project →</a>
+            </div></div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -83,5 +142,15 @@
       <small>&copy; 2026 Pauline Delepaut</small>
     </div>
   </footer>
+
+  <script>
+    document.querySelectorAll('.card[data-expandable] .card-head').forEach(function (head) {
+      head.addEventListener('click', function () {
+        var card = head.closest('.card');
+        var open = card.toggleAttribute('data-open');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  </script>
 </body>
 </html>
